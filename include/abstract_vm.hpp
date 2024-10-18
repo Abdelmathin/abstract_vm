@@ -39,6 +39,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 
 namespace abstract_vm
 {
@@ -50,4 +51,7 @@ namespace abstract_vm
 		Float  = (1 << 3),
 		Double = (1 << 4)
 	};
+	typedef unsigned int tokenTypeCode;
+	typedef std::string  tokenTypeName;
+	typedef std::map<tokenTypeCode, tokenTypeName> token_t;
 }

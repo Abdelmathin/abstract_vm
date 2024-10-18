@@ -39,6 +39,8 @@
 #pragma once
 
 #include "abstract_vm.hpp"
+#include "Lexer.hpp"
+#include "Parser.hpp"
 #include <iostream>
 
 namespace abstract_vm
@@ -46,13 +48,23 @@ namespace abstract_vm
     class Client
     {
         private:
-            std::string                _buffer;
+            std::string         _buffer;
+            std::string         _eos;
+            abstract_vm::Lexer  _lexer;
+            abstract_vm::Parser _parser;
         public:
             Client(void);
             ~Client(void);
             Client(const Client& other);
             Client& operator=(const Client& other);
 
+            void setFdIn(int fdin);
+            void setFdOut(int fdout);
+            void setFdErr(int fderr);
+            void setEOS(const std::string& eos);
+
+            int  read(void);
+            bool connected(void) const;
             void checkLine(void);
             void addBuffer(const std::string& buffer);
     };

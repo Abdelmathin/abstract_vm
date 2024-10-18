@@ -38,6 +38,7 @@
 
 #pragma once
 
+#include "abstract_vm.hpp"
 #include <iostream>
 
 namespace abstract_vm

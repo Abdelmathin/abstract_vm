@@ -50,11 +50,15 @@ abstract_vm::Client::~Client(void)
 
 abstract_vm::Client::Client(const abstract_vm::Client& other)
 {
-
+    *this = other;
 }
 
 abstract_vm::Client& abstract_vm::Client::operator=(const abstract_vm::Client& other)
 {
+    if (this != &other)
+    {
+
+    }
     return (*this);
 }
 

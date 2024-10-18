@@ -1,0 +1,11 @@
+; -------------
+; sample.avm  -
+; -------------
+
+read(int32)
+
+exec factorial
+
+dump
+
+exit

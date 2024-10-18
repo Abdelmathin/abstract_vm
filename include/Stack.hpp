@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:    */
+/*   Stack.hpp                                          :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -36,52 +36,29 @@
 /*                                                                             */
 /* **************************************************************************  */
 
-# include "../include/abstract_vm.hpp"
-# include "../include/Client.hpp"
-#include <exception>
-#include <unistd.h>
-#include <fcntl.h>
+#pragma once
 
-int main(int argc, const char **argv)
+#include <iostream>
+
+namespace abstract_vm
 {
-	if (argc < 2)
-	{
-		abstract_vm::Client client = abstract_vm::Client();
-		client.setFdIn(STDIN_FILENO);
-		client.setFdOut(STDOUT_FILENO);
-		client.setFdErr(STDERR_FILENO);
-		client.setEOS(";;");
-		while ((client.connected()) && (client.read() > 0))
-		{
-			continue ;
-		}
-		return (0);
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		const int fd = open(argv[i], O_RDONLY);
-		if (fd < 0)
-		{
-			std::cerr << argv[0] << ": " << argv[i] << ": No such file or directory" << std::endl;
-			continue ;
-		}
-		try
-		{
-			abstract_vm::Client client = abstract_vm::Client();
-			client.setFdIn(fd);
-			client.setFdOut(STDOUT_FILENO);
-			client.setFdErr(STDERR_FILENO);
-			client.setEOS("exit");
-			while ((client.connected()) && (client.read() > 0))
-			{
-				continue ;
-			}
-		}
-		catch (const std::exception& xcp)
-		{
-			std::cerr << xcp.what() << std::endl;
-		}
-		close(fd);
-	}
-	return (0);
+    class Stack
+    {
+        public:
+            Stack(void);
+            ~Stack(void);
+            Stack(const Stack& other);
+            Stack& operator=(const Stack& other);
+
+            void push(abstract_vm::Operand* v);
+            abstract_vm::Operand* pop(void);
+            void dump(void);
+            void assert(abstract_vm::Operand* v) const;
+            void add(void);
+            void sub(void);
+            void mul(void);
+            void div(void);
+            void print(void);
+            void exit(void);
+    };
 }

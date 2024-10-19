@@ -179,6 +179,12 @@ void abstract_vm::Client::setVm(const abstract_vm::VirtualMachine& vm)
     this->_vm = vm;
 }
 
+void abstract_vm::Client::parse(void)
+{
+    this->_parser.setLexer(this->_lexer);
+    this->_parser.parse();
+}
+
 void abstract_vm::Client::clear(void)
 {
     this->setFdIn(-1)           ;
@@ -206,11 +212,11 @@ int abstract_vm::Client::read(void)
     if (rd > 0)
     {
         std::string tmp(tmpbuffer, rd);
+        this->addBuffer(tmp);
         if (rd < 1024)
         {
-            tmp += "\n";
-        }
-        this->addBuffer(tmp);
+            this->addLine(this->getBuffer());
+        }        
         return (rd);
     }
     this->setConnected(false);
@@ -224,13 +230,15 @@ void abstract_vm::Client::checkLine(void)
     while (i < l)
     {
         int p = (this->getBuffer()[i] == '\n');
+        std::string e = "\n";
         if (((i + 1) < l) && (this->getBuffer()[i] == '\r') && (this->getBuffer()[i + 1] == '\n'))
         {
             p = 2;
+            e = "\r\n";
         }
         if (p != 0)
         {
-            std::string user_input = this->getBuffer().substr(0, i);
+            std::string user_input = this->getBuffer().substr(0, i) + e;
             this->setBuffer(this->getBuffer().substr(i + p, this->getBuffer().length() - i - p));
             this->addLine(user_input);
             i = 0;

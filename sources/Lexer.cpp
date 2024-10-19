@@ -141,78 +141,29 @@ void abstract_vm::Lexer::addComment(void)
 	this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_COMMENT, res));
 }
 
-void abstract_vm::Lexer::addSpace(void)
-{
-	if (!IS_SPACE(this->peek()))
-	{
-		std::cout << "this->peek(): [" << this->peek() << "]" << std::endl;
-		throw std::runtime_error("Unexpected Token");
-	}
-	while ((!this->eof()) && (IS_SPACE(this->peek())))
-	{
-		this->advance();
-	}
-	this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_SPACE, " "));
-}
-
-void abstract_vm::Lexer::addNumber(void)
-{
-	if (!IS_DIGIT(this->peek()))
-	{
-		throw std::runtime_error("Unexpected Token");
-	}
-	std::string res = "";
-	while ((!this->eof()) && (IS_DIGIT(this->peek())))
-	{
-		res += this->peek();
-		this->advance();
-	}
-	std::cout << "this->peek(): [" << this->peek() << "]" << std::endl;
-	std::cout << "res: [" << res << "]" << std::endl;
-	exit(0);
-}
-
 void abstract_vm::Lexer::addWord(void)
 {
-	if (IS_DIGIT(this->peek()))
-	{
-		return (this->addNumber());
-	}
-	if (!IS_VARSTART(this->peek()))
-	{
-		std::cout << "this->peek(): [" << this->peek() << "]" << std::endl;
-		throw std::runtime_error("Unexpected Token");
-	}
 	std::string res = "";
-	while ((!this->eof()) && (IS_VARCHAR(this->peek())))
+	while (!this->eof())
 	{
-		res += this->peek();
-		this->advance();
+		switch (this->peek())
+		{
+			case CHARACTER_TAB:
+			case CHARACTER_SPACE:
+			case CHARACTER_LINE_FEED:
+			case CHARACTER_CARRIAGE_RETURN:
+			case CHARACTER_LEFT_PARENTHESIS:
+			case CHARACTER_RIGHT_PARENTHESIS:
+				return (this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_WORD, res)));
+			default:
+			{
+				res += this->peek();
+				this->advance();
+			}
+		}
 	}
-	this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_WORD, res));
+	return (this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_WORD, res)));
 }
-
-void abstract_vm::Lexer::addSymbol(void)
-{
-	switch (this->peek())
-	{
-		case CHARACTER_LEFT_PARENTHESIS:
-			this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_LEFT_PARENTHESIS, "("));
-			break;
-		case CHARACTER_RIGHT_PARENTHESIS:
-			this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_RIGHT_PARENTHESIS, ")"));
-			break;
-		default:
-			throw std::runtime_error("Unexpected Token");
-	}
-	this->advance();
-}
-
-/*
-	0x5464564
-	0b1010101
-	0o1231230
-*/
 
 void abstract_vm::Lexer::tokenize(void)
 {
@@ -220,15 +171,19 @@ void abstract_vm::Lexer::tokenize(void)
 	{
 		switch (this->peek())
 		{
+			case CHARACTER_TAB:
+			case CHARACTER_SPACE:
+			case CHARACTER_LINE_FEED:
+			case CHARACTER_CARRIAGE_RETURN:
 			case CHARACTER_LEFT_PARENTHESIS:
 			case CHARACTER_RIGHT_PARENTHESIS:
-				this->addSymbol();
+			{
+				this->_tokens.push_back(abstract_vm::Token(this->peek(), this->peek()));
+				this->advance();
 				break;
+			}
 			case CHARACTER_SEMICOLON:
 				this->addComment();
-				break;
-			case CHARACTER_SPACE:
-				this->addSpace();
 				break;
 			default:
 				this->addWord();

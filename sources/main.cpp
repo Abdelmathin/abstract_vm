@@ -36,11 +36,20 @@
 /*                                                                             */
 /* **************************************************************************  */
 
+#ifndef __ABSTRACT_VM_SOURCES_MAIN
+# define __ABSTRACT_VM_SOURCES_MAIN
+
 # include "../include/abstract_vm.hpp"
 # include "../include/Client.hpp"
-#include <exception>
-#include <unistd.h>
-#include <fcntl.h>
+# include <exception>
+# include <unistd.h>
+# include <fcntl.h>
+
+/*
+	0x5464564
+	0b1010101
+	0o1231230
+*/
 
 int main(int argc, const char **argv)
 {
@@ -55,6 +64,7 @@ int main(int argc, const char **argv)
 		{
 			continue ;
 		}
+		client.parse();
 		return (0);
 	}
 	for (int i = 1; i < argc; i++)
@@ -76,6 +86,7 @@ int main(int argc, const char **argv)
 			{
 				continue ;
 			}
+			client.parse();
 		}
 		catch (const std::exception& xcp)
 		{
@@ -85,3 +96,5 @@ int main(int argc, const char **argv)
 	}
 	return (0);
 }
+
+#endif//!__ABSTRACT_VM_SOURCES_MAIN

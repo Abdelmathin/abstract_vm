@@ -2,10 +2,11 @@
 ; sample.avm  -
 ; -------------
 
-read(int32)
+read(reg32)
 
-exec factorial
+exec file(factorial.avm)
 
 dump
 
 exit
+error

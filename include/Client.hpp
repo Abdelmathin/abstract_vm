@@ -87,6 +87,7 @@ namespace abstract_vm
             void                         setParser(const abstract_vm::Parser& parser)        ;
             void                         setVm(const abstract_vm::VirtualMachine& vm)        ;
 
+            void                         parse(void);
             void                         clear(void);
             int                          read(void);
             void                         checkLine(void);

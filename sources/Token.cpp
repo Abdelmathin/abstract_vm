@@ -76,6 +76,14 @@ abstract_vm::Token::Token(int type, std::string str)
 	this->setStr(str);
 }
 
+abstract_vm::Token::Token(int type, char chr)
+{
+	std::string str = "";
+	str += chr;
+	this->setType(type);
+	this->setStr(str);
+}
+
 int abstract_vm::Token::getType(void) const
 {
 	return (this->_type);

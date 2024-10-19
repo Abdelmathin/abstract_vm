@@ -39,6 +39,7 @@
 #pragma once
 
 #include "abstract_vm.hpp"
+#include "Lexer.hpp"
 #include <iostream>
 
 namespace abstract_vm
@@ -46,6 +47,7 @@ namespace abstract_vm
 	class Parser
 	{
 		private:
+			abstract_vm::Lexer _lexer;
 			void init(void);
 		public:
 			Parser(void);
@@ -53,6 +55,9 @@ namespace abstract_vm
 			Parser(const Parser& other);
 			Parser& operator=(const Parser& other);
 
+			void setLexer(abstract_vm::Lexer lexer);
+
+			void parse(void);
 			void clear(void);
 	};
 }

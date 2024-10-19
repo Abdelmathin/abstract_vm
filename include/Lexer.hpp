@@ -68,10 +68,7 @@ namespace abstract_vm
 
 			void                   advance(void)    ;
 			void                   addComment(void) ;
-			void                   addSpace(void)   ;
-			void                   addNumber(void)  ;
 			void                   addWord(void)    ;
-			void                   addSymbol(void)  ;
 			void                   tokenize(void)   ;
 			void                   clear(void)      ;
 	};

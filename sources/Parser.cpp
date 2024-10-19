@@ -41,6 +41,7 @@
 
 # include "../include/abstract_vm.hpp"
 # include "../include/Parser.hpp"
+# include "../include/Lexer.hpp"
 # include <iostream>
 
 void abstract_vm::Parser::init(void)
@@ -71,6 +72,22 @@ abstract_vm::Parser& abstract_vm::Parser::operator=(const abstract_vm::Parser& o
 
 	}
 	return (*this);
+}
+
+void abstract_vm::Parser::setLexer(abstract_vm::Lexer lexer)
+{
+	this->_lexer = lexer;
+}
+
+void abstract_vm::Parser::parse(void)
+{
+	// abstract_vm::Lexer::iterator it = lexer.begin();
+	// while (it != lexer.end())
+	// {
+	// 	it++;
+	// }
+	// (void) lexer;
+	exit(0);
 }
 
 void abstract_vm::Parser::clear(void)

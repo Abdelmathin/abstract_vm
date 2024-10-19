@@ -55,6 +55,7 @@ namespace abstract_vm
 			~Token(void);
 
 			Token(int type, std::string str);
+			Token(int type, char chr);
 
 			int         getType(void) const;
 			std::string getStr(void)  const;

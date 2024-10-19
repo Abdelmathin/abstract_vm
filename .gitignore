@@ -5,3 +5,6 @@
 .DS_Store
 .vscode
 __pycache__
+avm
+avm.cpp
+objects

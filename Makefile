@@ -36,7 +36,7 @@
 #                                                                               #
 #  **************************************************************************   #
 
-.PHONY: clean fclean re push p docker-container
+.PHONY: clean fclean re push p tests docker-container
 
 CPP=c++
 NAME=avm
@@ -99,8 +99,8 @@ clean:
 fclean: clean
 	$(REMOVE_FILE) $(NAME)
 
-test: all
-	./avm examples/*.avm
+tests: all
+	./$(NAME) tests/*.$(NAME)
 
 push:
 	git add . && git commit -m "update" && git push

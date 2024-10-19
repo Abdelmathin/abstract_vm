@@ -51,7 +51,7 @@ int main(int argc, const char **argv)
 		client.setFdOut(STDOUT_FILENO);
 		client.setFdErr(STDERR_FILENO);
 		client.setEOS(";;");
-		while ((client.connected()) && (client.read() > 0))
+		while ((client.isConnected()) && (client.read() > 0))
 		{
 			continue ;
 		}
@@ -72,7 +72,7 @@ int main(int argc, const char **argv)
 			client.setFdOut(STDOUT_FILENO);
 			client.setFdErr(STDERR_FILENO);
 			client.setEOS("exit");
-			while ((client.connected()) && (client.read() > 0))
+			while ((client.isConnected()) && (client.read() > 0))
 			{
 				continue ;
 			}

@@ -35,3 +35,47 @@
 /*      ████████         ██████████         ██████████                 ██      */
 /*                                                                             */
 /* **************************************************************************  */
+
+#ifndef __ABSTRACT_VM_SOURCES_PARSER
+# define __ABSTRACT_VM_SOURCES_PARSER
+
+# include "../include/abstract_vm.hpp"
+# include "../include/Parser.hpp"
+# include <iostream>
+
+void abstract_vm::Parser::init(void)
+{
+
+}
+
+abstract_vm::Parser::Parser(void)
+{
+	this->init();
+}
+
+abstract_vm::Parser::~Parser(void)
+{
+	this->clear();
+}
+
+abstract_vm::Parser::Parser(const abstract_vm::Parser& other)
+{
+	this->init();
+	*this = other;
+}
+
+abstract_vm::Parser& abstract_vm::Parser::operator=(const abstract_vm::Parser& other)
+{
+	if (this != &other)
+	{
+
+	}
+	return (*this);
+}
+
+void abstract_vm::Parser::clear(void)
+{
+
+}
+
+#endif//!__ABSTRACT_VM_SOURCES_PARSER

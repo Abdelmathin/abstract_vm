@@ -46,11 +46,13 @@ namespace abstract_vm
 	class Parser
 	{
 		private:
-			// TODO ...
+			void init(void);
 		public:
 			Parser(void);
 			~Parser(void);
 			Parser(const Parser& other);
 			Parser& operator=(const Parser& other);
+
+			void clear(void);
 	};
 }

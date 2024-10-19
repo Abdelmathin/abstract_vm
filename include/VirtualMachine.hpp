@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   VirtualMahhine.hpp                                 :+:      :+:    :+:    */
+/*   VirtualMachine.hpp                                 :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -43,5 +43,16 @@
 
 namespace abstract_vm
 {
+	class VirtualMachine
+	{
+		private:
+			void init(void);
+		public:
+			VirtualMachine(void);
+			~VirtualMachine(void);
+			VirtualMachine(const VirtualMachine& other);
+			VirtualMachine& operator=(const VirtualMachine& other);
 
+			void clear(void);
+	};
 }

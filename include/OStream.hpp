@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   Lexer.hpp                                          :+:      :+:    :+:    */
+/*   OStream.hpp                                        :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -40,21 +40,25 @@
 
 #include "abstract_vm.hpp"
 #include <iostream>
-#include <vector>
+#include <sstream>
 
 namespace abstract_vm
 {
-	class Lexer
+	class OStream
 	{
 		private:
-			std::vector< abstract_vm::token_t > _tokens;
+			int               _fdout;
+			std::stringstream _stream;
 			void init(void);
 		public:
-			Lexer(void);
-			~Lexer(void);
-			Lexer(const Lexer& other);
-			Lexer& operator=(const Lexer& other);
+			OStream(void);
+			OStream(const OStream& other);
+			OStream& operator=(const OStream& other);
+			OStream& operator<<(const std::string& msg);
+			~OStream(void);
 
+			int  getFdOut(void) const;
+			void setFdOut(int fd);
 			void clear(void);
 	};
 }

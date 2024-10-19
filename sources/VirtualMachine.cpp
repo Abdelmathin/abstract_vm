@@ -35,3 +35,47 @@
 /*      ████████         ██████████         ██████████                 ██      */
 /*                                                                             */
 /* **************************************************************************  */
+
+#ifndef __ABSTRACT_VM_SOURCES_VIRTUAL_MACHINE
+# define __ABSTRACT_VM_SOURCES_VIRTUAL_MACHINE
+
+# include "../include/abstract_vm.hpp"
+# include "../include/VirtualMachine.hpp"
+# include <iostream>
+
+void abstract_vm::VirtualMachine::init(void)
+{
+
+}
+
+abstract_vm::VirtualMachine::VirtualMachine(void)
+{
+	this->init();
+}
+
+abstract_vm::VirtualMachine::~VirtualMachine(void)
+{
+	this->clear();
+}
+
+abstract_vm::VirtualMachine::VirtualMachine(const abstract_vm::VirtualMachine& other)
+{
+	this->init();
+	*this = other;
+}
+
+abstract_vm::VirtualMachine& abstract_vm::VirtualMachine::operator=(const abstract_vm::VirtualMachine& other)
+{
+	if (this != &other)
+	{
+
+	}
+	return (*this);
+}
+
+void abstract_vm::VirtualMachine::clear(void)
+{
+
+}
+
+#endif//!__ABSTRACT_VM_SOURCES_VIRTUAL_MACHINE

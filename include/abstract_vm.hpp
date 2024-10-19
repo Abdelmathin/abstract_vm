@@ -51,6 +51,7 @@ namespace abstract_vm
 		Float  = (1 << 3),
 		Double = (1 << 4)
 	};
+	const std::string crlf = "\r\n";
 	typedef unsigned int tokenTypeCode;
 	typedef std::string  tokenTypeName;
 	typedef std::map<tokenTypeCode, tokenTypeName> token_t;

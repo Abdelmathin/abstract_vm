@@ -35,3 +35,47 @@
 /*      ████████         ██████████         ██████████                 ██      */
 /*                                                                             */
 /* **************************************************************************  */
+
+#ifndef __ABSTRACT_VM_SOURCES_LEXER
+# define __ABSTRACT_VM_SOURCES_LEXER
+
+# include "../include/abstract_vm.hpp"
+# include "../include/Lexer.hpp"
+# include <iostream>
+
+void abstract_vm::Lexer::init(void)
+{
+	this->_tokens.clear();
+}
+
+abstract_vm::Lexer::Lexer(void)
+{
+	this->init();
+}
+
+abstract_vm::Lexer::~Lexer(void)
+{
+	this->clear();
+}
+
+abstract_vm::Lexer::Lexer(const abstract_vm::Lexer& other)
+{
+	this->init();
+	*this = other;
+}
+
+abstract_vm::Lexer& abstract_vm::Lexer::operator=(const abstract_vm::Lexer& other)
+{
+	if (this != &other)
+	{
+		this->_tokens = other._tokens;
+	}
+	return (*this);
+}
+
+void abstract_vm::Lexer::clear(void)
+{
+	this->_tokens.clear();
+}
+
+#endif//!__ABSTRACT_VM_SOURCES_LEXER

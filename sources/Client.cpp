@@ -49,7 +49,7 @@ void abstract_vm::Client::init(void)
     this->setFdIn(-1)                             ;
     this->setFdOut(-1)                            ;
     this->setFdErr(-1)                            ;
-    this->setConnected(false)                     ;
+    this->setConnected(true)                      ;
     this->setBuffer("")                           ;
     this->setEOS("")                              ;
     this->setOutputstream(abstract_vm::OStream()) ;
@@ -241,9 +241,19 @@ void abstract_vm::Client::checkLine(void)
     }
 }
 
-void abstract_vm::Client::addLine(const std::string& line)
+bool abstract_vm::Client::addLine(const std::string& line)
 {
-    (void) line;
+    const std::string tmp = abstract_vm::trim(line);
+    if ((tmp.size() > 0) && (tmp == abstract_vm::trim(this->_eos)))
+    {
+        this->setConnected(false);
+        return (false);
+    }
+    if (this->_eos.size())
+    this->_lexer.setIndex(0);
+    this->_lexer.setBuffer(line);
+    this->_lexer.tokenize();
+    return (true);
 }
 
 void abstract_vm::Client::addBuffer(const std::string& buffer)

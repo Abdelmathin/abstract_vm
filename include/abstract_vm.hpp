@@ -41,6 +41,26 @@
 #include <iostream>
 #include <map>
 
+#define CHARACTER_SEMICOLON          ';'
+#define CHARACTER_CARRIAGE_RETURN    '\r'
+#define CHARACTER_LINE_FEED          '\n'
+#define CHARACTER_SPACE              ' '
+#define CHARACTER_LEFT_PARENTHESIS   '('
+#define CHARACTER_RIGHT_PARENTHESIS  ')'
+#define CHARACTER_DOT                '.'
+
+#define TOKEN_TYPE_UNKNOWN           (0 << 0)
+#define TOKEN_TYPE_COMMENT           (1 << 0)
+#define TOKEN_TYPE_WORD              (1 << 1)
+#define TOKEN_TYPE_SPACE             (1 << 2)
+#define TOKEN_TYPE_LEFT_PARENTHESIS  (1 << 3)
+#define TOKEN_TYPE_RIGHT_PARENTHESIS (1 << 4)
+
+#define IS_DIGIT(c)        (('0' <= c) && (c <= '9'))
+#define IS_SPACE(c)        ((c == ' ') || (c == '	'))
+#define IS_VARSTART(c)     ((c == '_') || (('a' <= c) && (c <= 'z')) || (('A' <= c) && (c <= 'Z')))
+#define IS_VARCHAR(c)      (IS_DIGIT(c) || IS_VARSTART(c))
+
 namespace abstract_vm
 {
 	enum eOperandType
@@ -52,7 +72,10 @@ namespace abstract_vm
 		Double = (1 << 4)
 	};
 	const std::string crlf = "\r\n";
-	typedef unsigned int tokenTypeCode;
-	typedef std::string  tokenTypeName;
-	typedef std::map<tokenTypeCode, tokenTypeName> token_t;
+	std::string ltrim(std::string str);
+	std::string rtrim(std::string str);
+	std::string trim(std::string  str);
+	std::string ltrim(std::string str, std::string charset);
+	std::string rtrim(std::string str, std::string charset);
+	std::string trim(std::string  str, std::string charset);
 }

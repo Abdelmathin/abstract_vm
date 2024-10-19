@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   Compiler.cpp                                       :+:      :+:    :+:    */
+/*   Token.cpp                                          :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -35,3 +35,65 @@
 /*      ████████         ██████████         ██████████                 ██      */
 /*                                                                             */
 /* **************************************************************************  */
+
+#ifndef __ABSTRACT_VM_SOURCES_TOKEN
+# define __ABSTRACT_VM_SOURCES_TOKEN
+
+# include "../include/abstract_vm.hpp"
+# include "../include/Token.hpp"
+# include <iostream>
+
+abstract_vm::Token::Token(void)
+{
+	this->_type = TOKEN_TYPE_UNKNOWN;
+	this->_str  = "";
+}
+
+abstract_vm::Token::Token(const Token& other)
+{
+	*this = other;
+}
+
+abstract_vm::Token& abstract_vm::Token::operator=(const abstract_vm::Token& other)
+{
+	if (this != &other)
+	{
+		this->_type = other._type;
+		this->_str  = other._str ;
+	}
+	return (*this);
+}
+
+abstract_vm::Token::~Token(void)
+{
+	this->_type = TOKEN_TYPE_UNKNOWN;
+	this->_str  = "";
+}
+
+abstract_vm::Token::Token(int type, std::string str)
+{
+	this->setType(type);
+	this->setStr(str);
+}
+
+int abstract_vm::Token::getType(void) const
+{
+	return (this->_type);
+}
+
+std::string abstract_vm::Token::getStr(void) const
+{
+	return (this->_str);
+}
+
+void abstract_vm::Token::setType(int type)
+{
+	this->_type = type;
+}
+
+void abstract_vm::Token::setStr(std::string str)
+{
+	this->_str = str;
+}
+
+#endif//!__ABSTRACT_VM_SOURCES_TOKEN

@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   Compiler.hpp                                       :+:      :+:    :+:    */
+/*   Token.hpp                                          :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -43,5 +43,23 @@
 
 namespace abstract_vm
 {
+	class Token
+	{
+		private:
+			int         _type;
+			std::string _str;
+		public:
+			Token(void);
+			Token(const Token& other);
+			Token& operator=(const Token& other);
+			~Token(void);
 
+			Token(int type, std::string str);
+
+			int         getType(void) const;
+			std::string getStr(void)  const;
+
+			void        setType(int type)       ;
+			void        setStr(std::string str) ;
+	};
 }

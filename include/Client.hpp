@@ -90,7 +90,7 @@ namespace abstract_vm
             void                         clear(void);
             int                          read(void);
             void                         checkLine(void);
-            void                         addLine(const std::string& line);
+            bool                         addLine(const std::string& line);
             void                         addBuffer(const std::string& buffer);
     };
 }

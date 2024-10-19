@@ -39,6 +39,7 @@
 #pragma once
 
 #include "abstract_vm.hpp"
+#include "Token.hpp"
 #include <iostream>
 #include <vector>
 
@@ -47,7 +48,9 @@ namespace abstract_vm
 	class Lexer
 	{
 		private:
-			std::vector< abstract_vm::token_t > _tokens;
+			std::string::size_type            _index;
+			std::string                       _buffer;
+			std::vector< abstract_vm::Token > _tokens;
 			void init(void);
 		public:
 			Lexer(void);
@@ -55,6 +58,21 @@ namespace abstract_vm
 			Lexer(const Lexer& other);
 			Lexer& operator=(const Lexer& other);
 
-			void clear(void);
+			char                   peek(void)      const ;
+			bool                   eof(void)       const ;
+			std::string::size_type getIndex(void)  const ;
+			std::string            getBuffer(void) const ;
+
+			void                   setIndex(std::string::size_type index) ;
+			void                   setBuffer(const std::string& buffer)   ;
+
+			void                   advance(void)    ;
+			void                   addComment(void) ;
+			void                   addSpace(void)   ;
+			void                   addNumber(void)  ;
+			void                   addWord(void)    ;
+			void                   addSymbol(void)  ;
+			void                   tokenize(void)   ;
+			void                   clear(void)      ;
 	};
 }

@@ -35,3 +35,47 @@
 /*      ████████         ██████████         ██████████                 ██      */
 /*                                                                             */
 /* **************************************************************************  */
+
+#ifndef __ABSTRACT_VM_SOURCES_ABSTRACT_VM
+# define __ABSTRACT_VM_SOURCES_ABSTRACT_VM
+
+# include "../include/abstract_vm.hpp"
+# include <iostream>
+
+std::string abstract_vm::ltrim(std::string str)
+{
+    return (abstract_vm::ltrim(str, "\v\f\t "));
+}
+
+std::string abstract_vm::rtrim(std::string str)
+{
+    return (abstract_vm::rtrim(str, "\v\f\t "));
+}
+
+std::string abstract_vm::trim(std::string str)
+{
+    return (abstract_vm::trim(str, "\v\f\t "));
+}
+
+std::string abstract_vm::ltrim(std::string str, std::string charset)
+{
+    std::string::size_type first = str.find_first_not_of(charset);
+    if (first == std::string::npos)
+    {
+        return ("");
+    }
+    return (str.substr(first));
+}
+
+std::string abstract_vm::rtrim(std::string str, std::string charset)
+{
+    std::string::size_type last = str.find_last_not_of(charset);
+    return (str.substr(0, last + 1));
+}
+
+std::string abstract_vm::trim(std::string str, std::string charset)
+{
+    return (abstract_vm::ltrim(abstract_vm::rtrim(str, charset), charset));
+}
+
+#endif//!__ABSTRACT_VM_SOURCES_ABSTRACT_VM

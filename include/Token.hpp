@@ -47,20 +47,20 @@ namespace abstract_vm
 	{
 		private:
 			int         _type;
-			std::string _str;
+			std::string _value;
 		public:
 			Token(void);
 			Token(const Token& other);
 			Token& operator=(const Token& other);
 			~Token(void);
 
-			Token(int type, std::string str);
+			Token(int type, std::string value);
 			Token(int type, char chr);
 
-			int         getType(void) const;
-			std::string getStr(void)  const;
+			int         getType(void)  const;
+			std::string getValue(void) const;
 
-			void        setType(int type)       ;
-			void        setStr(std::string str) ;
+			void        setType(int type)           ;
+			void        setValue(std::string value) ;
 	};
 }

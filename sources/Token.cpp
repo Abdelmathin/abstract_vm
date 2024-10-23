@@ -45,8 +45,8 @@
 
 abstract_vm::Token::Token(void)
 {
-	this->_type = TOKEN_TYPE_UNKNOWN;
-	this->_str  = "";
+	this->_type  = TOKEN_TYPE_UNKNOWN;
+	this->_value = "";
 }
 
 abstract_vm::Token::Token(const Token& other)
@@ -58,22 +58,22 @@ abstract_vm::Token& abstract_vm::Token::operator=(const abstract_vm::Token& othe
 {
 	if (this != &other)
 	{
-		this->_type = other._type;
-		this->_str  = other._str ;
+		this->_type  = other._type  ;
+		this->_value = other._value ;
 	}
 	return (*this);
 }
 
 abstract_vm::Token::~Token(void)
 {
-	this->_type = TOKEN_TYPE_UNKNOWN;
-	this->_str  = "";
+	this->_type  = TOKEN_TYPE_UNKNOWN;
+	this->_value = "";
 }
 
 abstract_vm::Token::Token(int type, std::string str)
 {
 	this->setType(type);
-	this->setStr(str);
+	this->setValue(str);
 }
 
 abstract_vm::Token::Token(int type, char chr)
@@ -81,7 +81,7 @@ abstract_vm::Token::Token(int type, char chr)
 	std::string str = "";
 	str += chr;
 	this->setType(type);
-	this->setStr(str);
+	this->setValue(str);
 }
 
 int abstract_vm::Token::getType(void) const
@@ -89,9 +89,9 @@ int abstract_vm::Token::getType(void) const
 	return (this->_type);
 }
 
-std::string abstract_vm::Token::getStr(void) const
+std::string abstract_vm::Token::getValue(void) const
 {
-	return (this->_str);
+	return (this->_value);
 }
 
 void abstract_vm::Token::setType(int type)
@@ -99,9 +99,9 @@ void abstract_vm::Token::setType(int type)
 	this->_type = type;
 }
 
-void abstract_vm::Token::setStr(std::string str)
+void abstract_vm::Token::setValue(std::string str)
 {
-	this->_str = str;
+	this->_value = str;
 }
 
 #endif//!__ABSTRACT_VM_SOURCES_TOKEN

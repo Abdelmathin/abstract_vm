@@ -39,7 +39,9 @@
 #pragma once
 
 #include "abstract_vm.hpp"
-#include "Lexer.hpp"
+#include "Token.hpp"
+#include "Instruction.hpp"
+#include <vector>
 #include <iostream>
 
 namespace abstract_vm
@@ -47,7 +49,9 @@ namespace abstract_vm
 	class Parser
 	{
 		private:
-			abstract_vm::Lexer _lexer;
+			unsigned int                            _tpos;
+			std::vector< abstract_vm::Token >       _tokens;
+			std::vector< abstract_vm::Instruction > _instructions;
 			void init(void);
 		public:
 			Parser(void);
@@ -55,8 +59,20 @@ namespace abstract_vm
 			Parser(const Parser& other);
 			Parser& operator=(const Parser& other);
 
-			void setLexer(abstract_vm::Lexer lexer);
+			bool               advance(void);
+			abstract_vm::Token currentToken(void);
+			bool               skipBlankTokens(void);
+			bool               syntaxError(void);
+			bool               pushInt8(void);
+			bool               pushInt16(void);
+			bool               pushInt32(void);
+			bool               pushInt64(void);
+			bool               pushFloat(void);
+			bool               pushDouble(void);
+			bool               pushImage(void);
+			bool               pushInstruction(void);
 
+			void setTokens(const std::vector< abstract_vm::Token >& tokens);
 			void parse(void);
 			void clear(void);
 	};

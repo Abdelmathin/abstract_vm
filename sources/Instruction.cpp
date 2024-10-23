@@ -1,7 +1,7 @@
 /* **************************************************************************  */
 /*                                                                             */
 /*                                                         :::      ::::::::   */
-/*   Lexer.cpp                                          :+:      :+:    :+:    */
+/*   Instruction.cpp                                    :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+      */
 /*   By: ahabachi <abdelmathinhabachi@gmail.com>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+            */
@@ -36,171 +36,65 @@
 /*                                                                             */
 /* **************************************************************************  */
 
-#ifndef __ABSTRACT_VM_SOURCES_LEXER
-# define __ABSTRACT_VM_SOURCES_LEXER
+#ifndef __ABSTRACT_VM_SOURCES_INSTRUCTION
+# define __ABSTRACT_VM_SOURCES_INSTRUCTION
 
 # include "../include/abstract_vm.hpp"
-# include "../include/Lexer.hpp"
-# include "../include/Token.hpp"
+# include "../include/Instruction.hpp"
+# include "../include/IOperand.hpp"
 # include <iostream>
-# include <exception>
 
-void abstract_vm::Lexer::init(void)
+abstract_vm::Instruction::Instruction(void)
 {
-	this->_tokens.clear();
-	this->setIndex(0);
-	this->setBuffer("");
+	this->_keyword = 0;
+	this->_operand = 0;
 }
 
-abstract_vm::Lexer::Lexer(void)
+abstract_vm::Instruction::Instruction(const abstract_vm::Instruction& other)
 {
-	this->init();
-}
-
-abstract_vm::Lexer::~Lexer(void)
-{
-	this->clear();
-}
-
-abstract_vm::Lexer::Lexer(const abstract_vm::Lexer& other)
-{
-	this->init();
 	*this = other;
 }
 
-abstract_vm::Lexer& abstract_vm::Lexer::operator=(const abstract_vm::Lexer& other)
+abstract_vm::Instruction& abstract_vm::Instruction::operator=(const abstract_vm::Instruction& other)
 {
 	if (this != &other)
 	{
-		this->_tokens = other._tokens;
+		this->_keyword = other._keyword;
+		this->_operand = other._operand;
 	}
 	return (*this);
 }
 
-char abstract_vm::Lexer::peek(void) const
+abstract_vm::Instruction::~Instruction(void)
 {
-	if (this->_index < this->_buffer.size())
-	{
-		return (this->_buffer[this->_index]);
-	}
-	return ('\0');
+	this->_keyword = 0;
+	this->_operand = 0;
 }
 
-bool abstract_vm::Lexer::eof(void) const
+abstract_vm::Instruction::Instruction(int keyword, abstract_vm::IOperand* operand)
 {
-	return (this->_index >= this->_buffer.size());
+	this->_keyword = keyword;
+	this->_operand = operand;
 }
 
-std::string::size_type abstract_vm::Lexer::getIndex(void) const
+int abstract_vm::Instruction::getKeyword(void) const
 {
-	return (this->_index);
+	return (this->_keyword);
 }
 
-std::string abstract_vm::Lexer::getBuffer(void) const
+abstract_vm::IOperand* abstract_vm::Instruction::getOperand(void) const
 {
-	return (this->_buffer);
+	return (this->_operand);
 }
 
-std::vector< abstract_vm::Token > abstract_vm::Lexer::getTokens(void) const
+void abstract_vm::Instruction::setKeyword(int keyword)
 {
-	return (this->_tokens);
+	this->_keyword = keyword;
 }
 
-void abstract_vm::Lexer::setIndex(std::string::size_type index)
+void abstract_vm::Instruction::setOperand(abstract_vm::IOperand* operand)
 {
-	this->_index = index;
+	this->_operand = operand;
 }
 
-void abstract_vm::Lexer::setBuffer(const std::string& buffer)
-{
-	this->_buffer = buffer;
-}
-
-void abstract_vm::Lexer::advance(void)
-{
-	if (!this->eof())
-	{
-		this->_index++;
-	}
-}
-
-void abstract_vm::Lexer::addComment(void)
-{
-	std::string res = "";
-	while (!this->eof())
-	{
-		if (this->peek() == CHARACTER_CARRIAGE_RETURN)
-		{
-			this->advance();
-			if ((this->eof()) || (this->peek() == CHARACTER_LINE_FEED))
-			{
-				this->advance();
-				break ;
-			}
-			res += CHARACTER_CARRIAGE_RETURN;
-			continue ;
-		}
-		res += this->peek();
-		this->advance();
-	}
-	this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_COMMENT, res));
-}
-
-void abstract_vm::Lexer::addWord(void)
-{
-	std::string res = "";
-	while (!this->eof())
-	{
-		switch (this->peek())
-		{
-			case CHARACTER_TAB:
-			case CHARACTER_SPACE:
-			case CHARACTER_LINE_FEED:
-			case CHARACTER_CARRIAGE_RETURN:
-			case CHARACTER_LEFT_PARENTHESIS:
-			case CHARACTER_RIGHT_PARENTHESIS:
-				return (this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_WORD, res)));
-			default:
-			{
-				res += this->peek();
-				this->advance();
-			}
-		}
-	}
-	return (this->_tokens.push_back(abstract_vm::Token(TOKEN_TYPE_WORD, res)));
-}
-
-void abstract_vm::Lexer::tokenize(void)
-{
-	while (!this->eof())
-	{
-		switch (this->peek())
-		{
-			case CHARACTER_TAB:
-			case CHARACTER_SPACE:
-			case CHARACTER_LINE_FEED:
-			case CHARACTER_CARRIAGE_RETURN:
-			case CHARACTER_LEFT_PARENTHESIS:
-			case CHARACTER_RIGHT_PARENTHESIS:
-			{
-				this->_tokens.push_back(abstract_vm::Token(this->peek(), this->peek()));
-				this->advance();
-				break;
-			}
-			case CHARACTER_SEMICOLON:
-				this->addComment();
-				break;
-			default:
-				this->addWord();
-		}
-	}
-}
-
-void abstract_vm::Lexer::clear(void)
-{
-	this->_tokens.clear();
-	this->setIndex(0);
-	this->setBuffer("");
-}
-
-#endif//!__ABSTRACT_VM_SOURCES_LEXER
+#endif//!__ABSTRACT_VM_SOURCES_INSTRUCTION

@@ -181,7 +181,7 @@ void abstract_vm::Client::setVm(const abstract_vm::VirtualMachine& vm)
 
 void abstract_vm::Client::parse(void)
 {
-    this->_parser.setLexer(this->_lexer);
+    this->_parser.setTokens(this->_lexer.getTokens());
     this->_parser.parse();
 }
 

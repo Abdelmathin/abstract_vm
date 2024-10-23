@@ -1,4 +1,4 @@
-# 🧩 Abstract VM
+# 🖥️ C++ Implementation of a Stack-Based Virtual Machine for Assembly Execution
 
 <p align="center">
     <a href="" target="_blank">

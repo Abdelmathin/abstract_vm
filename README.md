@@ -38,3 +38,33 @@ assert double(42.42)
 
 exit
 ```
+
+### Syntax and Instructions
+
+- **Comments:** Begin with a `;` and end at the newline. Comments can appear at the start of a line or after an instruction.
+
+- **Instructions:**
+  - **`push v`**: Pushes the value `v` onto the top of the stack. The value `v` can be one of the following formats:
+    - `int8(n)`: Creates an 8-bit integer with value `n`.
+    - `int16(n)`: Creates a 16-bit integer with value `n`.
+    - `int32(n)`: Creates a 32-bit integer with value `n`.
+    - `float(z)`: Creates a float with value `z`.
+    - `double(z)`: Creates a double with value `z`.
+
+  - **`pop`**: Removes the value from the top of the stack. If the stack is empty, the program execution stops with an error.
+
+  - **`dump`**: Displays each value in the stack from the most recent to the oldest without altering the stack. Each value is separated by a newline.
+
+  - **`assert v`**: Asserts that the value at the top of the stack matches the value passed as a parameter. If it does not, the program execution stops with an error. The value `v` must be in the same format as those used in the `push` instruction.
+
+  - **`add`**: Removes the top two values from the stack, adds them, and pushes the result back onto the stack. If there are fewer than two values on the stack, the program execution stops with an error.
+
+  - **`sub`**: Removes the top two values from the stack, subtracts the second from the first, and pushes the result back onto the stack. If there are fewer than two values on the stack, the program execution stops with an error.
+
+  - **`mul`**: Removes the top two values from the stack, multiplies them, and pushes the result back onto the stack. If there are fewer than two values on the stack, the program execution stops with an error.
+
+  - **`div`**: Removes the top two values from the stack, divides the second by the first, and pushes the result back onto the stack. If there are fewer than two values on the stack or if the first value is zero, the program execution stops with an error.
+
+  - **`mod`**: Removes the top two values from the stack, calculates the modulus of the second value by the first, and pushes the result back onto the stack. If there are fewer than two values on the stack or if the first value is zero, the program execution stops with an error.
+
+  - **`exit`**: Terminates the program execution.

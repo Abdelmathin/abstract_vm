@@ -68,3 +68,48 @@ exit
   - **`mod`**: Removes the top two values from the stack, calculates the modulus of the second value by the first, and pushes the result back onto the stack. If there are fewer than two values on the stack or if the first value is zero, the program execution stops with an error.
 
   - **`exit`**: Terminates the program execution.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- A C++ compiler (e.g., `g++`) installed on your machine.
+- Basic understanding of C++ programming and assembly-like languages.
+- Familiarity with using terminal or command-line interfaces.
+
+## Getting Started
+
+To get a copy of the Abstract VM project up and running on your local machine, follow these steps:
+
+### 1. Clone the Repository
+First, clone the repository to your local machine:
+```bash
+git clone git@github.com:Abdelmathin/abstract_vm.git
+```
+### 2. Navigate to the Project Directory
+
+Change into the project directory:
+
+```bash
+cd abstract_vm
+```
+
+### 3. Compile the Project
+
+Use the provided Makefile to compile the project:
+
+```bash
+make
+```
+
+### 4. Running the Virtual Machine
+
+To run the virtual machine with an example file, use the following command:
+
+```bash
+./abstract_vm example.avm
+```
+
+### 5. Create Your Own Example
+
+You can create your own .avm file using the specified syntax and run it to see how the virtual machine processes your instructions.

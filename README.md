@@ -119,3 +119,15 @@ To run the virtual machine with an example file, use the following command:
 ### 5. Create Your Own Example
 
 You can create your own .avm file using the specified syntax and run it to see how the virtual machine processes your instructions.
+
+## Conclusion
+
+Thank you for checking out the Abstract VM project! This virtual machine provides a powerful way to understand stack-based architectures and the execution of assembly-like languages.
+
+Feel free to explore the code, contribute, or adapt it for your own projects. If you encounter any issues or have suggestions for improvement, please open an issue or a pull request on GitHub.
+
+Happy coding!
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.

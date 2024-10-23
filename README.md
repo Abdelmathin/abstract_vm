@@ -1,5 +1,11 @@
 # 🧩 Abstract VM
 
+<p align="center">
+    <a href="" target="_blank">
+        <img style="border-radius: 10px;" src="docs/assets/img/banner.png" width="" alt="Terraform + AWS" />
+    </a>
+</p>
+
 ## Overview
 Abstract VM is a C++ project that simulates a stack-based virtual machine capable of executing instructions defined in a custom assembly-like language. This project allows you to perform various operations such as arithmetic calculations, data manipulation, and more.
 

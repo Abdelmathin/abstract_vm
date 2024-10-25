@@ -41,6 +41,7 @@
 
 # include "../include/abstract_vm.hpp"
 # include <iostream>
+# include <sstream>
 
 std::string abstract_vm::ltrim(std::string str)
 {
@@ -76,6 +77,37 @@ std::string abstract_vm::rtrim(std::string str, std::string charset)
 std::string abstract_vm::trim(std::string str, std::string charset)
 {
     return (abstract_vm::ltrim(abstract_vm::rtrim(str, charset), charset));
+}
+
+bool abstract_vm::isNumeric(const std::string s)
+{
+    if ((s.length() < 1) || ((s.length() > 1) && (s[0] == '0')))
+        return (false);
+    if ((s.length() < 2) && (s[0] == '-'))
+        return (false);
+    if ((s.length() > 2) && (s[0] == '-') && (s[1] == '0'))
+        return (false);
+    std::string::size_type i = (s[0] == '-');
+    while ((i < s.length()) && std::isdigit(s[i]))
+        i++;
+    std::stringstream ss(s); double number = 0; ss >> number;
+    return (!ss.fail() && ss.eof() && (i == s.length()));
+}
+
+bool abstract_vm::isDecimal(const std::string s)
+{
+    // TODO ...?
+    if ((s.length() < 1) || ((s.length() > 1) && (s[0] == '0')))
+        return (false);
+    if ((s.length() < 2) && (s[0] == '-'))
+        return (false);
+    if ((s.length() > 2) && (s[0] == '-') && (s[1] == '0'))
+        return (false);
+    std::string::size_type i = (s[0] == '-');
+    while ((i < s.length()) && std::isdigit(s[i]))
+        i++;
+    std::stringstream ss(s); double number = 0; ss >> number;
+    return (!ss.fail() && ss.eof() && (i == s.length()));
 }
 
 #endif//!__ABSTRACT_VM_SOURCES_ABSTRACT_VM

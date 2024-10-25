@@ -61,6 +61,26 @@
 #define TOKEN_TYPE_LEFT_PARENTHESIS  CHARACTER_LEFT_PARENTHESIS
 #define TOKEN_TYPE_RIGHT_PARENTHESIS CHARACTER_RIGHT_PARENTHESIS
 
+#define INSTRUCTION_PUSH             (1 << 0)
+
+#define KEYWORD_NAME_POP             "pop"
+#define KEYWORD_NAME_ADD             "add"
+#define KEYWORD_NAME_MUL             "mul"
+#define KEYWORD_NAME_PUSH            "push"
+#define KEYWORD_NAME_DUMP            "dump"
+#define KEYWORD_NAME_EXIT            "exit"
+#define KEYWORD_NAME_PRINT           "print"
+
+#define DATA_TYPENAME_INT8           "int8"
+#define DATA_TYPENAME_INT16          "int16"
+#define DATA_TYPENAME_INT32          "int32"
+#define DATA_TYPENAME_INT64          "int64"
+#define DATA_TYPENAME_FLOAT          "float"
+#define DATA_TYPENAME_DOUBLE         "double"
+#define DATA_TYPENAME_IMAGE          "image"
+
+
+
 #define IS_DIGIT(c)        (('0' <= c) && (c <= '9'))
 #define IS_SPACE(c)        ((c == ' ') || (c == '	'))
 #define IS_VARSTART(c)     ((c == '_') || (('a' <= c) && (c <= 'z')) || (('A' <= c) && (c <= 'Z')))
@@ -83,4 +103,6 @@ namespace abstract_vm
 	std::string ltrim(std::string str, std::string charset);
 	std::string rtrim(std::string str, std::string charset);
 	std::string trim(std::string  str, std::string charset);
+	bool        isNumeric(const std::string s);
+	bool        isDecimal(const std::string s);
 }

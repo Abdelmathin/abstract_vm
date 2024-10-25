@@ -40,6 +40,7 @@
 
 #include "abstract_vm.hpp"
 #include "Token.hpp"
+#include "IOperand.hpp"
 #include "Instruction.hpp"
 #include <vector>
 #include <iostream>
@@ -59,18 +60,26 @@ namespace abstract_vm
 			Parser(const Parser& other);
 			Parser& operator=(const Parser& other);
 
+			IOperand const * createOperand( eOperandType type, std::string const & value ) const;
+			IOperand const * createInt8(   std::string const & value ) const;
+			IOperand const * createInt16(  std::string const & value ) const;
+			IOperand const * createInt32(  std::string const & value ) const;
+			IOperand const * createFloat(  std::string const & value ) const;
+			IOperand const * createDouble( std::string const & value ) const;
+
 			bool               advance(void);
 			abstract_vm::Token currentToken(void);
 			bool               skipBlankTokens(void);
+			bool               skipEmptyTokens(void);
+			bool               skipWhiteTokens(void);
 			bool               syntaxError(void);
-			bool               pushInt8(void);
-			bool               pushInt16(void);
-			bool               pushInt32(void);
-			bool               pushInt64(void);
-			bool               pushFloat(void);
-			bool               pushDouble(void);
-			bool               pushImage(void);
-			bool               pushInstruction(void);
+			bool               push(void);
+			bool               addInstruction(void);
+			bool               mulInstruction(void);
+			bool               dumpInstruction(void);
+			bool               popInstruction(void);
+			bool               exitInstruction(void);
+			bool               printInstruction(void);
 
 			void setTokens(const std::vector< abstract_vm::Token >& tokens);
 			void parse(void);

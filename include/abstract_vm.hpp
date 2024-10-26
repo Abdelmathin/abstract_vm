@@ -90,19 +90,22 @@ namespace abstract_vm
 {
 	enum eOperandType
 	{
-		Int8   = (1 << 0),
-		Int16  = (1 << 1),
-		Int32  = (1 << 2),
-		Float  = (1 << 3),
-		Double = (1 << 4)
+		Int8   = 0,
+		Int16  = 1,
+		Int32  = 2,
+		Int64  = 3,
+		Float  = 4,
+		Double = 5,
+		Image  = 6
 	};
 	const std::string crlf = "\r\n";
-	std::string ltrim(std::string str);
-	std::string rtrim(std::string str);
-	std::string trim(std::string  str);
-	std::string ltrim(std::string str, std::string charset);
-	std::string rtrim(std::string str, std::string charset);
-	std::string trim(std::string  str, std::string charset);
-	bool        isNumeric(const std::string s);
-	bool        isDecimal(const std::string s);
+	std::string  ltrim(std::string str);
+	std::string  rtrim(std::string str);
+	std::string  trim(std::string  str);
+	std::string  ltrim(std::string str, std::string charset);
+	std::string  rtrim(std::string str, std::string charset);
+	std::string  trim(std::string  str, std::string charset);
+	bool         isNumeric(const std::string s);
+	bool         isDecimal(const std::string s);
+	eOperandType getOperandType(int type);
 }

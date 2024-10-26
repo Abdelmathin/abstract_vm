@@ -47,18 +47,18 @@ namespace abstract_vm
 	class Instruction
 	{
 		private:
-			int                    _keyword;
-			abstract_vm::IOperand* _operand;
+			int                          _keyword;
+			const abstract_vm::IOperand* _operand;
 			Instruction(void);
 		public:
 			Instruction(const Instruction& other);
 			Instruction& operator=(const Instruction& other);
 			~Instruction(void);
 
-			Instruction(int keyword, abstract_vm::IOperand* operand);
+			Instruction(int keyword, const abstract_vm::IOperand* operand);
 
-			int                    getKeyword(void) const;
-			abstract_vm::IOperand* getOperand(void) const;
+			int                           getKeyword(void) const;
+			abstract_vm::IOperand const * getOperand(void) const;
 
 			void                   setKeyword(int keyword)                    ;
 			void                   setOperand(abstract_vm::IOperand* operand) ;

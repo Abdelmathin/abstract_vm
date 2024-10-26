@@ -42,6 +42,7 @@
 # include "../include/abstract_vm.hpp"
 # include <iostream>
 # include <sstream>
+# include <exception>
 
 std::string abstract_vm::ltrim(std::string str)
 {
@@ -108,6 +109,29 @@ bool abstract_vm::isDecimal(const std::string s)
         i++;
     std::stringstream ss(s); double number = 0; ss >> number;
     return (!ss.fail() && ss.eof() && (i == s.length()));
+}
+
+abstract_vm::eOperandType abstract_vm::getOperandType(int type)
+{
+    switch (type)
+    {
+        case Int8:
+            return (Int8);
+        case Int16:
+            return (Int16);
+        case Int32:
+            return (Int32);
+        case Int64:
+            return (Int64);
+        case Float:
+            return (Float);
+        case Double:
+            return (Double);
+        case Image:
+            return (Image);
+    }
+    throw std::runtime_error("Unknown eOperandType!");
+    return (Int8);
 }
 
 #endif//!__ABSTRACT_VM_SOURCES_ABSTRACT_VM

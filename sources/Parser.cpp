@@ -77,7 +77,7 @@ abstract_vm::Parser& abstract_vm::Parser::operator=(const abstract_vm::Parser& o
 	return (*this);
 }
 
-IOperand const * abstract_vm::Parser::createOperand( eOperandType type, std::string const & value ) const
+abstract_vm::IOperand const * abstract_vm::Parser::createOperand( eOperandType type, std::string const & value ) const
 {
 	(void) type;
 	(void) value;
@@ -215,12 +215,12 @@ bool abstract_vm::Parser::push(void)
 	this->advance();
 	this->skipBlankTokens();
 
-	abstract_vm::IOperand* operand = this->createOperand(type, currentToken().getValue());
+	const abstract_vm::IOperand* operand = this->createOperand(abstract_vm::getOperandType(type), currentToken().getValue());
 	if (!operand)
 	{
 		return (this->syntaxError());
 	}
-	this->_instructions.push(abstract_vm::Instruction(INSTRUCTION_PUSH, operand));
+	this->_instructions.push_back(abstract_vm::Instruction(INSTRUCTION_PUSH, operand));
 
 	this->advance();
 	this->skipBlankTokens();

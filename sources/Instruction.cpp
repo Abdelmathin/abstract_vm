@@ -71,7 +71,7 @@ abstract_vm::Instruction::~Instruction(void)
 	this->_operand = 0;
 }
 
-abstract_vm::Instruction::Instruction(int keyword, abstract_vm::IOperand* operand)
+abstract_vm::Instruction::Instruction(int keyword, const abstract_vm::IOperand* operand)
 {
 	this->_keyword = keyword;
 	this->_operand = operand;
@@ -82,7 +82,7 @@ int abstract_vm::Instruction::getKeyword(void) const
 	return (this->_keyword);
 }
 
-abstract_vm::IOperand* abstract_vm::Instruction::getOperand(void) const
+abstract_vm::IOperand const* abstract_vm::Instruction::getOperand(void) const
 {
 	return (this->_operand);
 }

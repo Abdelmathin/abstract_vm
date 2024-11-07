@@ -79,8 +79,66 @@ abstract_vm::Parser& abstract_vm::Parser::operator=(const abstract_vm::Parser& o
 
 abstract_vm::IOperand const * abstract_vm::Parser::createOperand( eOperandType type, std::string const & value ) const
 {
+	// std::map< > 
+
+
+
+safepassword
+
+
+MAX POSSIBILTIES TO CRACK
+BRUTFORE TIME TO CRACK
+
+https://my.norton.com/extspa/passwordmanager?path=pwd-gen
+
+https://www.keepersecurity.com/en_GB/features/password-generator.html
+https://www.mcafee.com/en-us/password-generator.html
+
+
+https://www.f-secure.com/en/password-generator
+
+https://bitwarden.com/password-generator/
+
+https://www.zoho.com/vault/password-generator.html
+
+
+
+https://chatlyai.app/
+
+
+https://codecanyon.net/category/html5?term=quiz&gad_source=1&gclid=Cj0KCQjwj4K5BhDYARIsAD1Ly2qyCUY-ZVeGR5J7h_Z_ogCv7QIU02CO1uDpx8OCK11h8C5WkR-xvG8aAqy9EALw_wcB
+
+
+https://preview.codecanyon.net/item/quiz-storm-html5-game/full_screen_preview/25661382?_ga=2.120084808.1117672916.1730235027-2031014440.1730235027&_gac=1.116398452.1730235027.Cj0KCQjwj4K5BhDYARIsAD1Ly2qyCUY-ZVeGR5J7h_Z_ogCv7QIU02CO1uDpx8OCK11h8C5WkR-xvG8aAqy9EALw_wcB
+
+
+https://preview.codecanyon.net/item/mina-quiz/full_screen_preview/26571906?_ga=2.57217258.1117672916.1730235027-2031014440.1730235027&_gac=1.115675252.1730235027.Cj0KCQjwj4K5BhDYARIsAD1Ly2qyCUY-ZVeGR5J7h_Z_ogCv7QIU02CO1uDpx8OCK11h8C5WkR-xvG8aAqy9EALw_wcB
+
+https://preview.codecanyon.net/item/adventure-quiz-html5-game-construct-3-firebase-leaderboard-no-plugin/full_screen_preview/29293054?_ga=2.166219902.1117672916.1730235027-2031014440.1730235027&_gac=1.157661384.1730235027.Cj0KCQjwj4K5BhDYARIsAD1Ly2qyCUY-ZVeGR5J7h_Z_ogCv7QIU02CO1uDpx8OCK11h8C5WkR-xvG8aAqy9EALw_wcB
+
+
+Python Quiz (kids)
+
+
+https://codecanyon.net/item/monster-math/53649884
+https://codecanyon.net/item/mythical-creatures/53678702
+
+
+tsent.ai/store
+tsent.ai/games/python-quiz
+
+
+
+
+	switch (type)
+	{
+		case Int8:
+			return (this->createInt8(value));
+	}
 	(void) type;
 	(void) value;
+	std::cout << "type: " << type << ", value: " << value << std::endl;
+	exit(0);
 	return (NULL);
 }
 
